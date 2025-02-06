@@ -1,24 +1,43 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import heroVideo from '../assets/hero.mp4';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import heroVideo from "../assets/hero.mp4";
 
 const Hero = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
+  useEffect(() => {
+    const video = document.createElement("video");
+    video.src = heroVideo;
+    video.preload = "auto";
+    video.onloadeddata = () => {
+      setVideoLoaded(true);
+    };
+  }, []);
+
   return (
     <section id="hero" className="relative w-full h-screen overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          className="w-full h-full object-cover brightness-[0.85]"
-        >
-          <source src={heroVideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        {videoLoaded ? (
+          <video
+            autoPlay
+            loop
+            muted
+            preload="auto"
+            playsInline
+            className="w-full h-full object-cover brightness-[0.85]"
+          >
+            <source src={heroVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <div className="w-full h-full bg-black flex justify-center items-center">
+            <span className="text-white text-lg">Loading...</span>
+          </div>
+        )}
       </div>
 
-      {/* Minimal Overlay Content */}
+      {/* Overlay Content */}
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center text-white px-4">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -26,7 +45,7 @@ const Hero = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-5xl md:text-7xl font-medium mb-4 tracking-tight"
         >
-          Krushi Unnati
+          Krushi Unnati Farm
         </motion.h1>
 
         <motion.div

@@ -17,7 +17,7 @@ const AboutUs = () => {
           </h2>
           <p className="mt-4 text-lg text-gray-600">
             Nestled amidst lush greenery, Krushi Unnati is a <strong>premium farmstay</strong>,   
-              where modern luxury meets nature’s serenity. Whether you seek a, <strong>peaceful getaway, a vibrant celebration, or a corporate retreat</strong>,  
+            where modern luxury meets nature’s serenity. Whether you seek a <strong>peaceful getaway, a vibrant celebration, or a corporate retreat</strong>,  
             our farm provides the perfect ambiance for every occasion.  
           </p>
           <p className="mt-4 text-lg text-gray-600">
@@ -37,7 +37,7 @@ const AboutUs = () => {
           </motion.button>
         </motion.div>
 
-        {/* Right Side - Image */}
+        {/* Right Side - Video */}
         <motion.div 
           className="md:w-1/2"
           initial={{ opacity: 0, x: 50, scale: 0.9 }}
@@ -45,11 +45,17 @@ const AboutUs = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           whileHover={{ scale: 1.05, rotate: 2 }} // Slight zoom and tilt effect
         >
-          <img 
-            src={require("../assets/ku1.JPG")}
-            alt="Krushi Unnati Farm" 
-            className="w-full rounded-xl shadow-xl transition-all duration-500 hover:shadow-2xl"
-          />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="w-full rounded-xl shadow-xl transition-all duration-500 hover:shadow-2xl object-cover"
+          >
+            <source src="/about.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </motion.div>
       </div>
     </section>
